@@ -7,7 +7,10 @@ function Callback() {
   const accessToken = new URLSearchParams(location.search).get("token")
   const url = `/projects`
   debugger;
-  let response = axios.create({
+  let instance = axios.create({
+    baseURL: "http://localhost:8080"
+  });
+  let response =axios.create({
     baseURL: "http://localhost:8080"
   }).get(url, {
     headers: { 'Authorization': `Bearer ${accessToken}` }

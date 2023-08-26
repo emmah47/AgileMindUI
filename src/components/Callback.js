@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react'
+import { Navigate, useLocation } from 'react-router-dom'
 import axios from 'axios';
 
 function Callback() {
-  debugger
-  axios.get(`http://localhost:8080/projects`)
-  .then(function (response) {
-    // handle success
-    debugger
-    console.log(response);
+  const location = useLocation()
+  const accessToken = new URLSearchParams(location.search).get("token")
+  const url = `/projects`
+  debugger;
+  let response = axios.create({
+    baseURL: "http://localhost:8080"
+  }).get(url, {
+    headers: { 'Authorization': `Bearer ${accessToken}` }
   })
-  .catch(function (error) {
-    // handle error
-    debugger
-    console.log(error);
-  })
-  .finally(function () {
-    // always executed
-  });
+  console.log(response)
+
+  // const location = useLocation()
+  // debugger;
+  // useEffect(() => {
+  //   const accessToken = extractUrlParameter('token')
+  //   if (accessToken) {
+  //     handleLogin(accessToken)
+  //     const redirect = '/'
+  //     setRedirectTo(redirect)
+  //   }
+  // }, [])
 
 
-  return (
-    <div>
-    Hello
-    </div>
-  );
 }
+
 
 export default Callback;

@@ -1,7 +1,7 @@
 import React from 'react';
 import GithubLogin from './GithubLogin';
 
-
+// login page
 function Login() {
 
 

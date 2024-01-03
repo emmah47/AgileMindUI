@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
-import { parseJwt } from '../helper/Helpers'
+import { parseJwt } from '../misc/Helpers'
 
 function OAuth2Redirect() {
   const { userLogin } = useContext(AuthContext)
-  const [redirectTo, setRedirectTo] = useState('/login')
+  const [redirectTo, setRedirectTo] = useState('/oauth2/redirect')
 
   const location = useLocation()
-  debugger;
   useEffect(() => {
     const accessToken = extractUrlParameter('token')
     if (accessToken) {
@@ -25,10 +24,10 @@ function OAuth2Redirect() {
   const handleLogin = (accessToken) => {
     const data = parseJwt(accessToken)
     const user = { data, accessToken }
-    debugger;
     userLogin(user)
   };
 
+  debugger;
   return <Navigate to={redirectTo} />
 }
 

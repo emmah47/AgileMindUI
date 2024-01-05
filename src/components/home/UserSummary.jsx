@@ -24,7 +24,7 @@ function UserSummary() {
       <div className="greeting">
         Hello, {username}
       </div>
-      <img src={logo} />
+      <img src={logo} className='logo'/>
       <ProjectStats totalProjects={totalProjects} inProgress={inProgress} complete={complete} />
       <ProfileButton />
       <LogoutButton />
@@ -54,7 +54,7 @@ function ProfileButton() {
   return (
     <div className='profile-button'>
       <img src = {placeholderImg} />
-      Profile
+      <button>Profile</button> {/* Add onclick = notify here */}
     </div>
   );
 }
@@ -63,7 +63,7 @@ function LogoutButton() {
   return (
     <div className='logout-button'>
       <img src = {placeholderImg} />
-      Logout
+      <button>Logout</button> 
     </div>
   );
 }

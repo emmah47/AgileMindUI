@@ -15,3 +15,9 @@
   display: inline-block;
   margin : 30px;
 }
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+

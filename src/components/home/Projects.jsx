@@ -5,12 +5,12 @@ import NotifyContext from "../context/NotifyContext";
 
 function Projects() {
   const [count, setCount] = useState(0);
-  const { lastApiCallTime, notify } = useContext(NotifyContext);
+  const { lastNotifTime, notify } = useContext(NotifyContext);
 
   useEffect(() => {
     let prevCount = count;
     setCount(prevCount + 1);
-  }, [lastApiCallTime]);
+  }, [lastNotifTime]);
 
 
   return (

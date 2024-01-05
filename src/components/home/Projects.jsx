@@ -12,10 +12,10 @@ function Projects() {
 
 
   return (
-    <>
+    <div className="projects">
       <Header />
       <ProjectsList projects={[]}/> {/* give actual list of projects here */}
-    </>
+    </div>
   );
 }
 
@@ -33,24 +33,32 @@ function Sort() {
   return (
     <div>
       <p>Sort</p>
-      <select>
-       <option value="by-recent">By Recent</option>
-       <option value="by-name">By Name</option>
-       <option value="creation-time">Creation Time</option>
+      <select name="sort-options">
+       <option value="by-recent" name="by-recent">By Recent</option>
+       <option value="by-name" name="by-name">By Name</option>
+       <option value="creation-time" name="creation-time">Creation Time</option>
      </select>
     </div>
   );
 }
 
 function SearchBar() {
+  function search(formData) {
+    const query = formData.get("query");
+    // do some action here
+  }
+
   return (
-    <input name="search" />
+    <form onSubmit={search} className="search-bar">
+      <input name="query" />
+      <button type="submit" name="search-btn">Search</button>
+    </form>
   );
 }
 
 function ProjectsList( {projects} ) {
   let projectsList = projects.map((project) => {
-    <ul><Project project={project} /></ul>
+    return (<ul><Project project={project} /></ul>);
   });
 
   return (

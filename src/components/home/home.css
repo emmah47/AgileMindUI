@@ -1,0 +1,17 @@
+/* .home-page {
+} */
+
+.user-summary {
+  display: inline-block;
+  margin : 30px;
+}
+
+.projects {
+  display: inline-block;
+  margin : 30px;
+}
+
+.upcoming-tasks {
+  display: inline-block;
+  margin : 30px;
+}

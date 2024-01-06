@@ -4,19 +4,34 @@ import placeholderImg from '../../images/placeholderImg.png'
 
 import React, {useEffect, useState, useContext} from "react";
 
+import { projectApi } from '../../api/ProjectApi';
+import AuthContext from '../context/AuthContext';
 import NotifyContext from "../context/NotifyContext";
 
+
 function UserSummary() {
-  const [count, setCount] = useState(0);
-  const { lastNotifTime, notify } = useContext(NotifyContext)
-  let username = "username"; // use api call here 
+  const { getUser } = useContext(AuthContext);
+  const { lastNotifTime, notify } = useContext(NotifyContext);
+  const [projectCounts, setProjectCounts] = useState({total : 0, completed : 0, inProgress : 0})
+
+  const user = getUser();
+  let username = user.data.name; 
   let totalProjects = 0;
-  let inProgress = 0;
-  let complete = 0;
+  let inProgressProjects = 0;
+  let completedProjects = 0;
 
   useEffect(() => {
-    const prevCount = count;
-    setCount(prevCount + 1);
+    async function fetchProjectCounts() {
+      try {
+        const response = await projectApi.getProjectCounts(user);
+        const projectCounts = response.data;
+        setProjectCounts(projectCounts);
+      } catch (error) {
+        console.error("Error: ", error);
+      }
+    }
+
+    fetchProjectCounts();
   }, [lastNotifTime]);
 
   return (
@@ -25,10 +40,9 @@ function UserSummary() {
         Hello, {username}
       </div>
       <img src={logo} className='logo'/>
-      <ProjectStats totalProjects={totalProjects} inProgress={inProgress} complete={complete} />
+      <ProjectStats totalProjects={projectCounts.total} inProgress={projectCounts.inProgress} complete={projectCounts.completed} />
       <ProfileButton />
       <LogoutButton />
-      User Summary: {count}
       <button onClick={notify}>Click here</button>
     </div>
   );

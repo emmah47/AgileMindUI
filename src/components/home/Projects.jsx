@@ -45,7 +45,7 @@ function Sort() {
 function SearchBar() {
   function search(formData) {
     const query = formData.get("query");
-    // do some action here
+    // call some callback that performs the search here
   }
 
   return (

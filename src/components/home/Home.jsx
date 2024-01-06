@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { NotifyContextProvider } from "../context/NotifyContext";
-import UserSummary from "./UserSummary";
+import ProjectSummary from "./ProjectSummary";
 import Projects from "./Projects";
 import UpcomingTasks from "./UpcomingTasks";
 
@@ -13,7 +13,7 @@ function Home() {
   return (
     <div className="home-page">
       <NotifyContextProvider>
-        <UserSummary />
+        <ProjectSummary />
         <Projects />
         <UpcomingTasks />
       </NotifyContextProvider>

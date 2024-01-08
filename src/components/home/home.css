@@ -21,3 +21,13 @@
   height: auto;
 }
 
+.tasks-days-until-due {
+  display: inline-block;
+  margin : 15px;
+}
+
+.tasks-by-projects-list {
+  display: inline-block;
+  margin : 5px;
+}
+

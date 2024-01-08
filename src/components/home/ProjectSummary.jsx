@@ -16,9 +16,6 @@ function UserSummary() {
 
   const user = getUser();
   let username = user.data.name; 
-  let totalProjects = 0;
-  let inProgressProjects = 0;
-  let completedProjects = 0;
 
   useEffect(() => {
     async function fetchProjectCounts() {
@@ -37,7 +34,8 @@ function UserSummary() {
   return (
     <div className="user-summary">
       <div className="greeting">
-        Hello, {username}
+        <p>Hello, {username}</p>
+        <img src={placeholderImg} className='profilePicture'></img>
       </div>
       <img src={logo} className='logo'/>
       <ProjectStats totalProjects={projectCounts.total} inProgress={projectCounts.inProgress} complete={projectCounts.completed} />

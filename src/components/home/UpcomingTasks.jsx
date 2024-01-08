@@ -95,7 +95,12 @@ function TasksByDay( {tasks} ) {
     // // if on last element or if task has different due project:
     if (i === length - 1 || tasks[i + 1].projectId != currTask.projectId) {
       let copyOfTasksWithSameProject = tasksWithSameProject.slice();
-      tasksByProject.push(<TasksByProject key={i} tasks={copyOfTasksWithSameProject}/>);
+      tasksByProject.push(
+        <div key={i}>
+          <p>{tasks[0].projectName}</p>
+          <TasksByProject tasks={copyOfTasksWithSameProject}/>
+        </div> 
+      );
       tasksWithSameProject = [];
     }
   }

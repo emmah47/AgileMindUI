@@ -1,39 +1,65 @@
 import React, {useEffect, useState, useContext} from "react";
 
 import NotifyContext from "../context/NotifyContext";
+import AuthContext from "../context/AuthContext";
+import { projectApi } from "../../api/ProjectApi";
 
 
 function Projects() {
+  const { getUser } = useContext(AuthContext);
   const { lastNotifTime, notify } = useContext(NotifyContext);
 
+  const [projects, setProjects] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [sortBy, setSortBy] = useState("by-recent");
+  const user = getUser();
+
   useEffect(() => {
-    // redo api calls here
+    async function fetchProjects() {
+      try {
+        let response = await projectApi.getProjects(user);
+        setProjects(response.data);
+      } catch(error) {
+        console.error("Error: ", error);
+      }
+    }
+    fetchProjects();
   }, [lastNotifTime]);
+
+  function onSearch(event) {
+    event.preventDefault();
+    setSearchText(event.target.value);
+  }
+
+  function onFilter(event) {
+    event.preventDefault();
+    setSortBy(event.target.value);
+  }
 
 
   return (
     <div className="projects">
-      <Header />
-      <ProjectsList projects={[]}/> {/* give actual list of projects here */}
+      <Header onSearch={onSearch} onFilter={onFilter}/>
+      <ProjectsList projects={projects} searchText={searchText} sortBy={sortBy}/> 
     </div>
   );
 }
 
-function Header() {
+function Header({ onSearch, onFilter }) {
   return (
     <div>
-      <p>My Projects</p>
-      <Sort />
-      <SearchBar />
+      <p className="project-header-title">My Projects</p>
+      <Sort onFilter={onFilter}/>
+      <SearchBar onSearch={onSearch}/>
     </div>
   );
 }
 
-function Sort() {
+function Sort({ onFilter }) {
   return (
-    <div>
-      <p>Sort</p>
-      <select name="sort-options">
+    <div className="sort-selection">
+      <span>Sort </span>
+      <select name="sort-options" onChange={(e) => onFilter(e)}>
        <option value="by-recent" name="by-recent">By Recent</option>
        <option value="by-name" name="by-name">By Name</option>
        <option value="creation-time" name="creation-time">Creation Time</option>
@@ -42,37 +68,53 @@ function Sort() {
   );
 }
 
-function SearchBar() {
-  function search(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const query = formData.get("query");
-    // call some callback that performs the search here
-  }
+function SearchBar( {onSearch} ) {
 
   return (
-    <form onSubmit={search} className="search-bar">
-      <input name="query" />
-      <button type="submit" name="search-btn">Search</button>
+    <form onSubmit={(e) => onSearch(e)} className="search-bar">
+      <input type="text" placeholder="Search..." />
     </form>
   );
 }
 
-function ProjectsList( {projects} ) {
+function ProjectsList( {projects, searchText, sortBy} ) {
   let projectsList = projects.map((project) => {
-    return (<ul><Project project={project} /></ul>);
+    return (<div key={project.id}><Project project={project} /></div>);
   });
+  projectsList.unshift(<div key="add-project-button"><AddProjectButton /></div>)
 
   return (
     <li>{projectsList}</li>
   );
 }
 
-// turn project json into an object or smth like that
-function Project(project) {
+function AddProjectButton() {
+  return (
+    <button className="add-project-button">
+      Start New Project
+    </button>
+  );
+}
+
+function Project( {project} ) {
+  // hardcoded constants, must add to api later
+  const NUM_ACTIVE_STORIES = 7;
+  const SPRINT_DAYS_LEFT = 11;
+
+  const dateOptions = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: '2-digit' 
+  };
+
+
+
   return (
     <div>
-      A Project
+      <p>{project.name}</p>
+      <p>{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</p>
+      <p>Active Stories: {NUM_ACTIVE_STORIES}</p>
+      <p>Sprint Days Left: {SPRINT_DAYS_LEFT}</p>
     </div>
   );
 }

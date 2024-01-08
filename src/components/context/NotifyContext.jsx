@@ -4,10 +4,10 @@ const NotifyContext = createContext();
 
 // use for notifying components of api calls
 function NotifyContextProvider({ children }) {
-  const [lastNotifTime, setLastApiCallTime] = useState(0);
+  const [lastNotifTime, setLastNotifyTime] = useState(0);
 
   function notify() {
-    setLastApiCallTime(new Date().getTime());
+    setLastNotifyTime(new Date().getTime());
   }
 
   return (

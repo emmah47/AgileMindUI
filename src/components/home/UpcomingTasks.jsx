@@ -17,7 +17,6 @@ function UpcomingTasks() {
         const DAYS_UNTIL_DUE = 7; // hardcoded, have to change this later
         const response = await projectApi.getUpcomingTasks(user, DAYS_UNTIL_DUE);
         setRecentTasks(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error: ", error);
       }

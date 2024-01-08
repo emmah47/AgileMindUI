@@ -3,17 +3,17 @@
 
 .user-summary {
   display: inline-block;
-  margin : 30px;
+  margin : 10px;
 }
 
 .projects {
   display: inline-block;
-  margin : 30px;
+  margin : 200px;
 }
 
 .upcoming-tasks {
   display: inline-block;
-  margin : 30px;
+  margin : 10px;
 }
 
 .logo {
@@ -27,6 +27,21 @@
 }
 
 .tasks-by-projects-list {
+  display: inline-block;
+  margin : 5px;
+}
+
+.project-header-title {
+  display: inline-block;
+  margin : 5px;
+}
+
+.sort-selection {
+  display: inline-block;
+  margin : 5px;
+}
+
+.sort-selection {
   display: inline-block;
   margin : 5px;
 }

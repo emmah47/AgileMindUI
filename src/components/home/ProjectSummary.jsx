@@ -21,8 +21,7 @@ function UserSummary() {
     async function fetchProjectCounts() {
       try {
         const response = await projectApi.getProjectCounts(user);
-        const projectCounts = response.data;
-        setProjectCounts(projectCounts);
+        setProjectCounts(response.data);
       } catch (error) {
         console.error("Error: ", error);
       }

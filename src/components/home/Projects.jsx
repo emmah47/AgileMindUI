@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import NotifyContext from "../context/NotifyContext";
 import AuthContext from "../context/AuthContext";
 import { projectApi } from "../../api/ProjectApi";
+import AddProjectPopup from "./AddProjectPopup";
 
 import './home.css'
 
@@ -43,14 +44,14 @@ function Projects() {
   return (
     <div className="projects">
       <Header onSearch={onSearch} onFilter={onFilter}/>
-      <ProjectsList projects={projects} searchText={searchText} sortBy={sortBy}/> 
+      <ProjectsList projects={projects} searchText={searchText} sortBy={sortBy} notify={notify}/> 
     </div>
   );
 }
 
 function Header({ onSearch, onFilter }) {
   return (
-    <div>
+    <div className="projects-header">
       <p className="project-header-title">My Projects</p>
       <Sort onFilter={onFilter}/>
       <SearchBar onSearch={onSearch}/>
@@ -80,7 +81,15 @@ function SearchBar( {onSearch} ) {
   );
 }
 
-function ProjectsList( {projects, searchText, sortBy} ) {
+function ProjectsList( {projects, searchText, sortBy, notify} ) {
+  // used to control add projects popup
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+    notify();
+  };
+
   // filter by search text
   let filteredProjectsList = projects.filter((project) => {
       return project.name.toLowerCase().includes(searchText.toLowerCase());
@@ -115,27 +124,38 @@ function ProjectsList( {projects, searchText, sortBy} ) {
 
   // make each project into a component and put it in a list
   let filteredProjectsComponentsList = SortedProjectsList.map((project) => {
-    return (<div key={project.id}><Project project={project} /></div>);
+    return (<div className="project-button" key={project.id}><Project project={project} /></div>);
   });
 
   // put the add project button at the front of the list
-  filteredProjectsComponentsList.unshift(<div key="add-project-button"><AddProjectButton /></div>)
+  filteredProjectsComponentsList.unshift(<div key="add-project-button" className="project-button"><div><AddProjectButton togglePopup={togglePopup}/></div></div>)
 
   return (
-    <div>{filteredProjectsComponentsList}</div>
+    <div>
+      <div className="projects-container">{filteredProjectsComponentsList}</div>
+      {isOpen && (
+        <div>
+          <div className="overlay"></div>
+          <div className="popup">
+            <AddProjectPopup togglePopup={togglePopup}/>
+          </div>
+        </div>
+      )}
+    </div>
+    
   );
 }
 
-function AddProjectButton() {
+function AddProjectButton({ togglePopup }) {
   return (
-    <button className="add-project-button">
+    <button onClick={togglePopup} className="add-project-button">
       Start New Project
     </button>
   );
 }
 
 function Project( {project} ) {
-  // hardcoded constants, must fix api endpoint later
+  // hardcoded constants, must make api endpoint later
   const NUM_ACTIVE_STORIES = 7;
   const SPRINT_DAYS_LEFT = 11;
   const navigate = useNavigate();

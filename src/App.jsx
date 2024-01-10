@@ -2,11 +2,12 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './components/context/AuthContext'
 import PrivateRoute from './components/misc/PrivateRoute'
-import Home from './components/home/Home'
 import Login from './components/login/Login'
 import OAuth2Redirect from './components/login/OAuth2Redirect'
-import Project from './api/Project'
+
+import Home from './components/home/Home'
 import UserProfile from './components/home/profile/UserProfile'
+import AddProjectPage from './components/home/AddProjectPopup'
 
 import Sprint from './components/projectdashboard/sprint/Sprint'
 import Backlog from './components/projectdashboard/backlog/Backlog'
@@ -14,6 +15,9 @@ import Timeline from './components/projectdashboard/timeline/Timeline'
 import Report from './components/projectdashboard/report/Report'
 import WhiteBoard from './components/projectdashboard/whiteboard/Whiteboard'
 import Settings from './components/projectdashboard/settings/Settings'
+
+// this is for texting, not an actual thing
+import Project from './api/Project'
 
 
 
@@ -32,6 +36,7 @@ function App() {
             <Route path='/projects' element={<Project />} />
             <Route path="*" element={<Navigate to="/" />}/>
             <Route path='/profile' element={<PrivateRoute><UserProfile /></PrivateRoute>}/>
+            <Route path='/projects/add-project' element={<PrivateRoute><AddProjectPage /></PrivateRoute>}/>
             <Route path='/project/:id/sprint' element={<PrivateRoute><Sprint /></PrivateRoute>}/>
             <Route path='/project/:id/backlog' element={<PrivateRoute><Backlog /></PrivateRoute>}/>
             <Route path='/project/:id/timeline' element={<PrivateRoute><Timeline /></PrivateRoute>}/>

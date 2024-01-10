@@ -106,7 +106,7 @@ function AddProjectButton() {
 }
 
 function Project( {project} ) {
-  // hardcoded constants, must make api endpoint later
+  // hardcoded constants, must fix api endpoint later
   const NUM_ACTIVE_STORIES = 7;
   const SPRINT_DAYS_LEFT = 11;
   const navigate = useNavigate();

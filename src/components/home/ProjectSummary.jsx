@@ -11,7 +11,7 @@ import NotifyContext from "../context/NotifyContext";
 
 
 function UserSummary() {
-  const { getUser } = useContext(AuthContext);
+  const { getUser, userLogout } = useContext(AuthContext);
   const { lastNotifTime, notify } = useContext(NotifyContext);
   const [projectCounts, setProjectCounts] = useState({total : 0, completed : 0, inProgress : 0})
 
@@ -40,8 +40,7 @@ function UserSummary() {
       <img src={logo} className='logo'/>
       <ProjectStats totalProjects={projectCounts.total} inProgress={projectCounts.inProgress} complete={projectCounts.completed} />
       <ProfileButton />
-      <LogoutButton />
-      <button onClick={notify}>Click here</button>
+      <LogoutButton userLogout={userLogout}/>
     </div>
   );
 }
@@ -75,11 +74,20 @@ function ProfileButton() {
   );
 }
 
-function LogoutButton() {
+function LogoutButton( {userLogout} ) {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    userLogout()
+    navigate('/login')
+  }
+
   return (
     <div className='logout-button'>
       <img src = {placeholderImg} />
-      <button>Logout</button> 
+      <button onClick={handleLogout}>
+        Logout
+      </button> 
     </div>
   );
 }

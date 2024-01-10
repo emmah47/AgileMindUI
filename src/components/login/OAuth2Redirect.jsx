@@ -27,7 +27,6 @@ function OAuth2Redirect() {
     userLogin(user)
   };
 
-  debugger;
   return <Navigate to={redirectTo} />
 }
 

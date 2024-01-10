@@ -6,6 +6,7 @@ import Home from './components/home/Home'
 import Login from './components/login/Login'
 import OAuth2Redirect from './components/login/OAuth2Redirect'
 import Project from './api/Project'
+import UserProfile from './components/home/profile/UserProfile'
 
 import Sprint from './components/projectdashboard/sprint/Sprint'
 import Backlog from './components/projectdashboard/backlog/Backlog'
@@ -30,6 +31,7 @@ function App() {
             <Route path='/oauth2/redirect' element={<OAuth2Redirect />} />
             <Route path='/projects' element={<Project />} />
             <Route path="*" element={<Navigate to="/" />}/>
+            <Route path='/profile' element={<PrivateRoute><UserProfile /></PrivateRoute>}/>
             <Route path='/project/:id/sprint' element={<PrivateRoute><Sprint /></PrivateRoute>}/>
             <Route path='/project/:id/backlog' element={<PrivateRoute><Backlog /></PrivateRoute>}/>
             <Route path='/project/:id/timeline' element={<PrivateRoute><Timeline /></PrivateRoute>}/>

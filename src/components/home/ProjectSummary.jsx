@@ -3,6 +3,7 @@ import placeholderImg from '../../images/placeholderImg.png'
 
 
 import React, {useEffect, useState, useContext} from "react";
+import { useNavigate } from 'react-router-dom';
 
 import { projectApi } from '../../api/ProjectApi';
 import AuthContext from '../context/AuthContext';
@@ -62,10 +63,14 @@ function ProjectStats({ totalProjects, inProgress, complete }) {
 }
 
 function ProfileButton() {
+  const navigate = useNavigate();
+
   return (
     <div className='profile-button'>
       <img src = {placeholderImg} />
-      <button>Profile</button> {/* Add onclick = notify here */}
+      <button onClick={() => navigate('/profile')}>
+        Profile
+      </button> 
     </div>
   );
 }

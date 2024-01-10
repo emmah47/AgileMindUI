@@ -117,16 +117,10 @@ function Project( {project} ) {
     day: '2-digit' 
   };
 
-  function handleButtonClick() {
-    console.log(`/project/${project.id}/sprint`);
-    navigate(`/project/${project.id}/sprint`);
-
-  }
-
   return (
     <div className="project">
       <div className="project-border">
-        <button onClick={handleButtonClick}>
+        <button onClick={() => navigate(`/project/${project.id}/sprint`)}>
           <p>{project.name}</p>
           <p>{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</p>
           <p>Active Stories: {NUM_ACTIVE_STORIES}</p>

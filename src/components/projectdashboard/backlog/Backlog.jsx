@@ -1,16 +1,16 @@
 import NavBar from "../NavBar";
 import { useParams } from 'react-router-dom';
 
-function Sprint() {
+function Backlog() {
   const { id } = useParams();
 
   return (
     <div>
       <NavBar />
-      <p>Sprint page</p>
+      <p>Backlog page</p>
       <p>project id: {id}</p>
     </div>
   );
 }
 
-export default Sprint;
+export default Backlog;

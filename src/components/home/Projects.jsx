@@ -1,8 +1,11 @@
 import React, {useEffect, useState, useContext} from "react";
+import { useNavigate } from 'react-router-dom';
 
 import NotifyContext from "../context/NotifyContext";
 import AuthContext from "../context/AuthContext";
 import { projectApi } from "../../api/ProjectApi";
+
+import './home.css'
 
 
 function Projects() {
@@ -71,20 +74,26 @@ function Sort({ onFilter }) {
 function SearchBar( {onSearch} ) {
 
   return (
-    <form onSubmit={(e) => onSearch(e)} className="search-bar">
+    <form onChange={(e) => onSearch(e)} className="search-bar">
       <input type="text" placeholder="Search..." />
     </form>
   );
 }
 
 function ProjectsList( {projects, searchText, sortBy} ) {
-  let projectsList = projects.map((project) => {
+  let filteredProjectsList = projects.filter((project) => {
+      return project.name.toLowerCase().includes(searchText.toLowerCase());
+  });
+
+
+  let filteredProjectsComponentsList = projects.map((project) => {
     return (<div key={project.id}><Project project={project} /></div>);
   });
-  projectsList.unshift(<div key="add-project-button"><AddProjectButton /></div>)
+
+  filteredProjectsComponentsList.unshift(<div key="add-project-button"><AddProjectButton /></div>)
 
   return (
-    <li>{projectsList}</li>
+    <div>{filteredProjectsComponentsList}</div>
   );
 }
 
@@ -97,9 +106,10 @@ function AddProjectButton() {
 }
 
 function Project( {project} ) {
-  // hardcoded constants, must add to api later
+  // hardcoded constants, must make api endpoint later
   const NUM_ACTIVE_STORIES = 7;
   const SPRINT_DAYS_LEFT = 11;
+  const navigate = useNavigate();
 
   const dateOptions = { 
     year: 'numeric', 
@@ -107,14 +117,22 @@ function Project( {project} ) {
     day: '2-digit' 
   };
 
+  function handleButtonClick() {
+    console.log(`/project/${project.id}/sprint`);
+    navigate(`/project/${project.id}/sprint`);
 
+  }
 
   return (
-    <div>
-      <p>{project.name}</p>
-      <p>{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</p>
-      <p>Active Stories: {NUM_ACTIVE_STORIES}</p>
-      <p>Sprint Days Left: {SPRINT_DAYS_LEFT}</p>
+    <div className="project">
+      <div className="project-border">
+        <button onClick={handleButtonClick}>
+          <p>{project.name}</p>
+          <p>{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</p>
+          <p>Active Stories: {NUM_ACTIVE_STORIES}</p>
+          <p>Sprint Days Left: {SPRINT_DAYS_LEFT}</p>
+        </button>
+      </div>
     </div>
   );
 }

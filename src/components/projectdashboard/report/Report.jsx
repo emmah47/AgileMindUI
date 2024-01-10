@@ -1,16 +1,16 @@
 import NavBar from "../NavBar";
 import { useParams } from 'react-router-dom';
 
-function Sprint() {
+function Report() {
   const { id } = useParams();
 
   return (
     <div>
       <NavBar />
-      <p>Sprint page</p>
+      <p>Report page</p>
       <p>project id: {id}</p>
     </div>
   );
 }
 
-export default Sprint;
+export default Report;

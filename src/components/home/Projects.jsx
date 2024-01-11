@@ -169,7 +169,7 @@ function Project( {project} ) {
   return (
     <div className="project">
       <div className="project-border">
-        <button onClick={() => navigate(`/project/${project.id}/sprint`)}>
+        <button onClick={() => navigate(`/project/${project.id}`)}>
           <p>{project.name}</p>
           <p>{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</p>
           <p>Active Stories: {NUM_ACTIVE_STORIES}</p>

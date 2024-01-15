@@ -96,7 +96,7 @@ function TasksByDay( {tasks} ) {
       let copyOfTasksWithSameProject = tasksWithSameProject.slice();
       tasksByProject.push(
         <div key={i}>
-          <p>{tasks[0].projectName}</p>
+          <p>{tasksWithSameProject[0].projectName}</p>
           <TasksByProject tasks={copyOfTasksWithSameProject}/>
         </div> 
       );
@@ -117,7 +117,11 @@ function TasksByDay( {tasks} ) {
 }
 
 function TasksByProject( {tasks} ) {
-  let taskDescriptions = tasks.map((task) => task.taskContent);
+  let i = 0;
+  let taskDescriptions = tasks.map((task) => {
+    i++;
+    return <div key={i}>{task.taskContent}</div>
+});
 
   return (
     <div>

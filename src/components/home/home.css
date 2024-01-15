@@ -90,3 +90,7 @@
   height: 300px;
 }
 
+.task-by-day {
+  display: flex;
+  align-items: flex-start;
+}

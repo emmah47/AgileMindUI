@@ -3,7 +3,8 @@ function AddProjectPopup({ togglePopup }) {
   return (
   <div>
     <p>Add A Project</p>
-    <button onClick={togglePopup}>Done</button>
+    <button onClick={togglePopup}>Cancel</button>
+    <button onClick={togglePopup}>Add</button>
   </div>
   );
 }

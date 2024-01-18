@@ -3,12 +3,14 @@ import instance from './Axios'
 export const projectApi = {
   getProjects,
   getProject,
+  addProject,
   getProjectCounts,
   getUpcomingTasks,
   generateUserStoriesFromRequirements,
 }
 
 function getProjects(user) {
+  console.log("get projects called");
   const url ='/projects';
   return instance.get(url, {
     headers: { 'Authorization': bearerAuth(user) }
@@ -20,6 +22,15 @@ function getProject(user, projectId) {
   return instance.get(url, {
     headers: { 'Authorization': bearerAuth(user) }
   });
+}
+
+function addProject(user, project) {
+  return instance.post('/projects', project, {
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': bearerAuth(user)
+    }
+  })
 }
 
 function getProjectCounts(user) {

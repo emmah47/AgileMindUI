@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { projectApi } from "./ProjectApi";
 import { useAuth } from "../components/context/AuthContext";
 
-
+// THIS CODE IS FOR TESTING PURPOSES
 // example code for calling backend api to get a list of projects, and then displaying them in a list
 function ProjectTable({ projects, projectCounts }) {
   const {total, completed, inProgress } = projectCounts;

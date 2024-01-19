@@ -1,11 +1,11 @@
+import './home.css';
+
 import { useState, useEffect } from "react";
 
 import { NotifyContextProvider } from "../context/NotifyContext";
 import ProjectSummary from "./ProjectSummary";
 import Projects from "./Projects";
 import UpcomingTasks from "./UpcomingTasks";
-
-import './home.css';
 
 
 function Home() {

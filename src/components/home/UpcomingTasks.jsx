@@ -45,13 +45,13 @@ function DateDisplay() {
 
   return (
     <div className="date-display">
-      <p>Today's Date</p>
-      <p>{new Date().toLocaleDateString(undefined, options)}</p>
+      <div className="date-display-text">Today's Date</div>
+      <div className="date-display-text-day">{new Date().toLocaleDateString(undefined, options)}</div>
     </div>
   );
 }
 
-// assums recentTasks is sorted
+// assumes recentTasks is sorted
 function Tasks({ recentTasks }) {
   const tasksByDay = [];
   const length = recentTasks.length;
@@ -72,9 +72,9 @@ function Tasks({ recentTasks }) {
 
   return(
     <div className="tasks">
-      <p>
+      <div className="tasks-upcoming-text">
         Upcoming
-      </p>
+      </div>
       <div className="tasks-by-day-list">
         {tasksByDay}
       </div>

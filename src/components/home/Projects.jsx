@@ -163,6 +163,9 @@ function AddProjectButton({ togglePopup }) {
     <div onClick={togglePopup} className="add-project-button">
       <div className="add-project-icon-wrapper">
         <img className="add-project-icon" src={addProjectIcon}/>
+        <div className="add-project-text">
+          Start New Project
+        </div>
       </div>
     </div>
   );

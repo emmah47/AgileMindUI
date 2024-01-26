@@ -97,9 +97,12 @@ function TasksByDay( {tasks} ) {
     if (i === length - 1 || tasks[i + 1].projectId != currTask.projectId) {
       let copyOfTasksWithSameProject = tasksWithSameProject.slice();
       tasksByProject.push(
-        <div key={i}>
-          <p>{tasksWithSameProject[0].projectName}</p>
-          <TasksByProject tasks={copyOfTasksWithSameProject}/>
+        <div className="tasks-by-project" key={i}>
+          <div className="upcoming-tasks-vertical-bar project-stat-bar-color1"></div>
+          <div className="task-by-project-right">
+            <div className="upcoming-tasks-project-name">{tasksWithSameProject[0].projectName}</div>
+            <TasksByProject tasks={copyOfTasksWithSameProject}/>
+          </div>
         </div> 
       );
       tasksWithSameProject = [];
@@ -122,11 +125,11 @@ function TasksByProject( {tasks} ) {
   let i = 0;
   let taskDescriptions = tasks.map((task) => {
     i++;
-    return <div key={i}>{task.taskContent}</div>
+    return <div className="task-description" key={i}>{task.taskContent}</div>
 });
 
   return (
-    <div>
+    <div className="task-description-list">
       {taskDescriptions}
     </div>
   );

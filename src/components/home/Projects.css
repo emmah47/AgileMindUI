@@ -137,10 +137,24 @@
 
 .add-project-icon-wrapper {
   margin: auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .add-project-icon {
   height: 80px;
+}
+
+.add-project-text {
+  padding-top: 10px;
+  color: #B6B6B6;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .project {
@@ -157,7 +171,7 @@
 
 .project-name {
   color: #000;
-  font-family: Poppins;
+  font-family: "system-ui";
   font-size: 23px;
   font-style: normal;
   font-weight: 600;

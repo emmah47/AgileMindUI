@@ -41,6 +41,7 @@
 .tasks-upcoming-text{
   margin-top: 45px;
   margin-left: 15px;
+  margin-bottom: 15px;
   color: #000;
   font-family: "system-ui";
   font-size: 25px;
@@ -49,19 +50,63 @@
   line-height: normal;
 }
 
-
+.task-by-day {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 15px;
+}
 
 .tasks-days-until-due {
-  display: inline-block;
-  margin : 15px;
+  color: #000;
+  font-family: "system-ui";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 10px;
 }
 
 .tasks-by-projects-list {
-  display: inline-block;
-  margin : 5px;
+  margin-top: 10px;
+  margin-left: 25px
 }
 
-.task-by-day {
+.tasks-by-project {
+  margin-bottom: 20px;
   display: flex;
-  align-items: flex-start;
+
 }
+
+.upcoming-tasks-vertical-bar {
+  margin-top: 4px;
+  margin-bottom: auto;
+  margin-right:8px;
+  width: 3px;
+  height: 2.0em;
+}
+
+.task-by-project-right {
+  margin-left: 25px;
+}
+
+.upcoming-tasks-project-name {
+  color: #909090;
+  font-family: "system-ui";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.task-description {
+  margin-top: 10px;
+  color: #000;
+  font-family: "system-ui";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+
+

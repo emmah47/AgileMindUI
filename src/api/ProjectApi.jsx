@@ -10,7 +10,6 @@ export const projectApi = {
 }
 
 function getProjects(user) {
-  console.log("get projects called");
   const url ='/projects';
   return instance.get(url, {
     headers: { 'Authorization': bearerAuth(user) }

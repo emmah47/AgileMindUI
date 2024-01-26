@@ -4,6 +4,8 @@ import NotifyContext from "../context/NotifyContext";
 import { projectApi } from "../../api/ProjectApi";
 import AuthContext from '../context/AuthContext';
 
+import "./UpcomingTasks.css"
+
 
 function UpcomingTasks() {
   const { getUser } = useContext(AuthContext);

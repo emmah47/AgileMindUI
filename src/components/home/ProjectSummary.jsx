@@ -1,5 +1,4 @@
 import logo from '../../images/logo.png'
-import placeholderImg from '../../images/placeholderImg.png'
 import avatar from '../../images/duck.png'
 import logoutIcon from '../../images/logout.svg'
 import profileIcon from '../../images/profile.svg'
@@ -10,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { projectApi } from '../../api/ProjectApi';
 import AuthContext from '../context/AuthContext';
 import NotifyContext from "../context/NotifyContext";
+
+
+import './ProjectSummary.css'
 
 
 function UserSummary() {
@@ -95,7 +97,7 @@ function ProfileButton() {
   return (
     <div className='menu-button-wrapper'>
       <button className="icon-button" onClick={() => navigate('/profile')}>
-        <img src={profileIcon} class="menu-button-image"/>
+        <img src={profileIcon} className="menu-button-image"/>
         <div className='menu-button-txt'>
           Profile
         </div>
@@ -115,7 +117,7 @@ function LogoutButton( {userLogout} ) {
   return (
     <div className='menu-button-wrapper'>
       <button className="icon-button" onClick={handleLogout}>
-        <img src={logoutIcon} class="menu-button-image"/>
+        <img src={logoutIcon} className="menu-button-image"/>
         <div className='menu-button-txt'>
           Logout
         </div>

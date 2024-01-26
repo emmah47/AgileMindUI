@@ -1,3 +1,5 @@
+import searchIcon from "../../images/search.svg"
+
 import React, {useEffect, useState, useContext} from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +8,7 @@ import AuthContext from "../context/AuthContext";
 import { projectApi } from "../../api/ProjectApi";
 import AddProjectPopup from "./AddProjectPopup";
 
-import './home.css'
+import './Projects.css'
 
 
 function Projects() {
@@ -52,7 +54,7 @@ function Projects() {
 function Header({ onSearch, onFilter }) {
   return (
     <div className="projects-header">
-      <p className="project-header-title">My Projects</p>
+      <p className="projects-header-title">My Projects</p>
       <Sort onFilter={onFilter}/>
       <SearchBar onSearch={onSearch}/>
     </div>
@@ -62,8 +64,8 @@ function Header({ onSearch, onFilter }) {
 function Sort({ onFilter }) {
   return (
     <div className="sort-selection">
-      <span>Sort </span>
-      <select name="sort-options" onChange={(e) => onFilter(e)}>
+      <div className="sort-label">Sort </div>
+      <select className="sort-options" name="sort-options" onChange={(e) => onFilter(e)}>
        <option value="by-recent" name="by-recent">By Recent</option>
        <option value="by-name" name="by-name">By Name</option>
        <option value="creation-time" name="creation-time">Creation Time</option>
@@ -75,8 +77,15 @@ function Sort({ onFilter }) {
 function SearchBar( {onSearch} ) {
 
   return (
-    <form onChange={(e) => onSearch(e)} className="search-bar">
-      <input type="text" placeholder="Search..." />
+    <form onChange={(e) => onSearch(e)}>
+      <div className="search-bar-wrapper">
+        <div className="search-bar-container">
+            <input className="search-text" type="text" placeholder="Search..." />
+          <div className="search-icon">
+            <img className="search-icon-img" src={searchIcon}></img>
+          </div>
+        </div>
+      </div>
     </form>
   );
 }
@@ -132,7 +141,9 @@ function ProjectsList( {projects, searchText, sortBy, notify} ) {
 
   return (
     <div>
-      <div className="projects-container">{filteredProjectsComponentsList}</div>
+      <div className="projects-container">
+        {filteredProjectsComponentsList}
+      </div>
       {isOpen && (
         <div>
           <div className="overlay"></div>

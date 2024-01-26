@@ -11,7 +11,6 @@ import AddProjectPage from './components/home/AddProjectPopup'
 
 import Project from './components/project/Project'
 
-
 import './App.css'
 
 function App() {

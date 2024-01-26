@@ -1,0 +1,133 @@
+.user-summary {
+  background: #F0F4F8; 
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.horizontal-line {
+  margin-right: 25px;
+  margin-top: 15px;
+  height: 2px;
+  background: #DEDEDE;
+}
+
+.greeting {
+  display: grid;
+  grid-template-columns: auto 80px;
+  margin-right: 25px;
+  margin-top: 30px;
+  & img {
+    height: 70px;
+    width: 70px;
+  }
+}
+
+.greeting-left {
+  margin-top: auto;
+  margin-bottom: auto;
+  & .hello-txt {
+    color: #000;
+    font-family: "system-ui";
+    font-size: 20px;
+    font-weight: 200;
+    line-height: normal;
+  }
+  & .username-txt {
+    color: #000;
+    font-family: "system-ui";
+    font-size: 22px;
+    font-style:normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.project-stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-rows: minmax(80px, auto);
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.project-stat-txt {
+  color: #909090;
+  font-family: "system-ui";
+  font-size: 12px;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.project-stat-count {
+  color: #000;
+  font-family: "system-ui";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding-left: 5px;
+  display: flex;
+}
+
+.project-stat-bar {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right:8px;
+  width: 2px;
+  height: 0.7em;
+}
+
+.project-stat-bar-color1 {
+  background: #DE7BF7;
+}
+.project-stat-bar-color2 {
+  background: #7BC3F7;
+}
+.project-stat-bar-color3 {
+  background: #7DF77B;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-buttons-wrapper {
+  margin-top: auto;
+  margin-bottom: 35px;
+}
+
+.menu-button-wrapper {
+  margin-top: 35px;
+  margin-bottom: 0;
+}
+
+.menu-button-txt {
+  margin-left: 20px;
+}
+
+.menu-button-image {
+  width: 18px; 
+  height: 18px;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #444; 
+  padding: 0; 
+  display: flex;
+  align-items: center;
+}
+
+.icon-button:hover,
+.icon-button:focus {
+  color: #555; 
+}
+

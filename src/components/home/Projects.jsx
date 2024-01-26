@@ -1,4 +1,5 @@
 import searchIcon from "../../images/search.svg"
+import addProjectIcon from "../../images/add_project_icon.svg"
 
 import React, {useEffect, useState, useContext} from "react";
 import { useNavigate } from 'react-router-dom';
@@ -137,7 +138,7 @@ function ProjectsList( {projects, searchText, sortBy, notify} ) {
   });
 
   // put the add project button at the front of the list
-  filteredProjectsComponentsList.unshift(<div key="add-project-button" className="project-button"><div><AddProjectButton togglePopup={togglePopup}/></div></div>)
+  filteredProjectsComponentsList.unshift(<div key="add-project-button" className="add-project-button-wrapper"><AddProjectButton togglePopup={togglePopup}/></div>)
 
   return (
     <div>
@@ -159,9 +160,11 @@ function ProjectsList( {projects, searchText, sortBy, notify} ) {
 
 function AddProjectButton({ togglePopup }) {
   return (
-    <button onClick={togglePopup} className="add-project-button">
-      Start New Project
-    </button>
+    <div onClick={togglePopup} className="add-project-button">
+      <div className="add-project-icon-wrapper">
+        <img className="add-project-icon" src={addProjectIcon}/>
+      </div>
+    </div>
   );
 }
 
@@ -179,13 +182,18 @@ function Project( {project} ) {
 
   return (
     <div className="project">
-      <div className="project-border">
-        <button onClick={() => navigate(`/project/${project.id}`)}>
-          <p>{project.name}</p>
-          <p>{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</p>
-          <p>Active Stories: {NUM_ACTIVE_STORIES}</p>
-          <p>Sprint Days Left: {SPRINT_DAYS_LEFT}</p>
-        </button>
+      <div className="project-details" onClick={() => navigate(`/project/${project.id}`)}>
+        <div className="project-name">{project.name}</div>
+        <div className="project-date">{new Date(project.lastOpenedDate).toLocaleDateString(undefined, dateOptions)}</div>
+        {project.status === "IN_PROGRESS" ? (
+          <div>
+            <div className="active-stories">Active Stories: {NUM_ACTIVE_STORIES}</div>
+            <div className="sprint-days-left">Sprint Days Left: {SPRINT_DAYS_LEFT}</div>
+          </div>
+        ) : (
+          <div className="complete-status">Status: Complete</div>
+        )}
+        
       </div>
     </div>
   );

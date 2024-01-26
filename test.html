@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+    }
+
+    .fixed-side {
+      flex: 0 0 200px;
+      background-color: #3498db;
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .scrollable-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .scrollable-middle {
+      /* Content for the scrollable middle */
+      /* Add your content here */
+      /* Example long content for scrolling */
+      overflow-y: auto;
+    }
+  </style>
+  <title>Scrollable Middle Example</title>
+</head>
+<body>
+  <div class="fixed-side">
+    <!-- Content for the left side -->
+    Side Content
+  </div>
+
+  <div class="scrollable-container">
+    <div class="scrollable-middle">
+      <!-- Content for the scrollable middle -->
+      <!-- Example long content for scrolling -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
+    </div>
+  </div>
+
+  <div class="fixed-side">
+    <!-- Content for the right side -->
+    Side Content
+  </div>
+</body>
+</html>

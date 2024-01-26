@@ -36,10 +36,6 @@ function AddProjectPopup({ togglePopup }) {
     };
   }
 
-  function test() {
-    console.log("inside test fn");
-  }
-
   return (
   <div>
     <p>Add A Project</p>

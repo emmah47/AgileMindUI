@@ -1,17 +1,30 @@
 .projects {
-  background-color: #ffffff;
+  background-color: #FCFCFC;
   margin-top: 25px;
   margin-bottom: 15px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
+
+::-webkit-scrollbar {
+  width: 12px; 
+  display: none;
+}
+
+
 
 /* ==========================projects header========================== */
 
 .projects-header {
   display: flex;
-  margin-top: 40px;
+  padding: 27px;
+  position: sticky; 
+  top: 0;
+  z-index: 1;
+  background-color: #FCFCFC;
+
 }
 
 .projects-header-title {
@@ -96,8 +109,101 @@
 
 /* ==========================projects list========================== */
 .projects-container {
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 270px;
+  gap: 30px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
 }
+
+.add-project-button-wrapper {
+  border-radius: 30px;
+  height: 100%;
+  background: #FFF;
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.10);
+  display: flex;
+}
+
+.add-project-button {
+  background-color: #F3F6F8;
+  border-radius: 30px;
+  width: 100%;
+  margin: 10px;
+  display: flex;
+}
+
+.add-project-icon-wrapper {
+  margin: auto;
+}
+
+.add-project-icon {
+  height: 80px;
+}
+
+.project {
+  border-radius: 30px;
+  height: 100%;
+  background: #FFF;
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.10);
+  display: flex;
+}
+
+.project-details {
+  padding: 25px;
+}
+
+.project-name {
+  color: #000;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.project-date {
+  padding-top: 5px;
+  color: #626262;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.active-stories {
+  padding-top: 18px;
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.sprint-days-left {
+  padding-top: 7px;
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.complete-status {
+  padding-top: 18px;
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
 
 
 

@@ -8,8 +8,9 @@ html, body {
   background-color: #f0f4f8;
   display: grid;
   grid-template-columns: 3.5fr 11fr 4.5fr;
-  min-height: 100vh; 
+  height: 100vh;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 

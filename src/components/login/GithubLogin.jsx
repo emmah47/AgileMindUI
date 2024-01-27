@@ -1,11 +1,14 @@
-const GithubLogin = () => {
+import githubIcon from "../../images/githubIcon.png"
+
+function GithubLogin() {
   const handleLogin = ()=>{
     window.location.href = `http://localhost:8080/oauth2/authorization/github`;
   }
 
   return (
-    <div>
-      <button onClick={handleLogin}>Login with GitHub</button>
+    <div className="sso-login-button-container">
+      <img className="sso-login-icon" src={githubIcon} />
+      <div className="sso-login-button" onClick={handleLogin}>GitHub</div>
     </div>
   );
 };

@@ -98,7 +98,7 @@ function TasksByDay( {tasks} ) {
       let copyOfTasksWithSameProject = tasksWithSameProject.slice();
       tasksByProject.push(
         <div className="tasks-by-project" key={i}>
-          <div className="upcoming-tasks-vertical-bar project-stat-bar-color1"></div>
+          <div className="upcoming-tasks-vertical-bar"></div>
           <div className="task-by-project-right">
             <div className="upcoming-tasks-project-name">{tasksWithSameProject[0].projectName}</div>
             <TasksByProject tasks={copyOfTasksWithSameProject}/>

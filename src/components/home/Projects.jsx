@@ -76,9 +76,12 @@ function Sort({ onFilter }) {
 }
 
 function SearchBar( {onSearch} ) {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
 
   return (
-    <form onChange={(e) => onSearch(e)}>
+    <form onChange={(e) => onSearch(e)} onSubmit={handleSubmit}>
       <div className="search-bar-wrapper">
         <div className="search-bar-container">
             <input className="search-text" type="text" placeholder="Search..." />

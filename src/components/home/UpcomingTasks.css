@@ -64,6 +64,7 @@
   font-weight: 500;
   line-height: normal;
   margin-top: 10px;
+  white-space: nowrap;
 }
 
 .tasks-by-projects-list {
@@ -74,19 +75,29 @@
 .tasks-by-project {
   margin-bottom: 20px;
   display: flex;
-
 }
 
 .upcoming-tasks-vertical-bar {
   margin-top: 4px;
   margin-bottom: auto;
-  margin-right:8px;
   width: 3px;
   height: 2.0em;
 }
 
+.tasks-by-project:nth-child(3n+1) .upcoming-tasks-vertical-bar{
+  background-color: #DE7BF7;
+}
+
+.tasks-by-project:nth-child(3n+2) .upcoming-tasks-vertical-bar{
+  background-color: #7BC3F7;
+}
+
+.tasks-by-project:nth-child(3n) .upcoming-tasks-vertical-bar{
+  background-color: #7DF77B;
+}
+
 .task-by-project-right {
-  margin-left: 25px;
+  margin-left: 33px;
 }
 
 .upcoming-tasks-project-name {

@@ -6,9 +6,9 @@ function GithubLogin() {
   }
 
   return (
-    <div className="sso-login-button-container">
+    <div className="sso-login-button-container" onClick={handleLogin}>
       <img className="sso-login-icon" src={githubIcon} />
-      <div className="sso-login-button" onClick={handleLogin}>GitHub</div>
+      <div className="sso-login-button">GitHub</div>
     </div>
   );
 };

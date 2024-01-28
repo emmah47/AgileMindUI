@@ -110,8 +110,8 @@ function LogoutButton( {userLogout} ) {
   const navigate = useNavigate();
 
   function handleLogout() {
-    userLogout()
-    navigate('/login')
+    userLogout();
+    navigate('/login');
   }
 
   return (

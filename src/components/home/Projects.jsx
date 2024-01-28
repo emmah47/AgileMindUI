@@ -1,13 +1,27 @@
 import searchIcon from "../../images/search.svg"
 import addProjectIcon from "../../images/add_project_icon.svg"
 
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import NotifyContext from "../context/NotifyContext";
 import AuthContext from "../context/AuthContext";
 import { projectApi } from "../../api/ProjectApi";
-import AddProjectPopup from "./AddProjectPopup";
+
+import {
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+} from '@chakra-ui/react'
 
 import './Projects.css'
 
@@ -95,14 +109,6 @@ function SearchBar( {onSearch} ) {
 }
 
 function ProjectsList( {projects, searchText, sortBy, notify} ) {
-  // used to control add projects popup
-  const [isOpen, setIsOpen] = useState(false);
-
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-    notify();
-  };
-
   // filter by search text
   let filteredProjectsList = projects.filter((project) => {
       return project.name.toLowerCase().includes(searchText.toLowerCase());
@@ -141,36 +147,85 @@ function ProjectsList( {projects, searchText, sortBy, notify} ) {
   });
 
   // put the add project button at the front of the list
-  filteredProjectsComponentsList.unshift(<div key="add-project-button" className="add-project-button-wrapper"><AddProjectButton togglePopup={togglePopup}/></div>)
+  filteredProjectsComponentsList.unshift(<AddProjectButton key="add-project-button" notify={notify}/>)
 
   return (
-    <div>
-      <div className="projects-container">
-        {filteredProjectsComponentsList}
-      </div>
-      {isOpen && (
-        <div>
-          <div className="overlay"></div>
-          <div className="popup">
-            <AddProjectPopup togglePopup={togglePopup}/>
-          </div>
-        </div>
-      )}
+    <div className="projects-container">
+      {filteredProjectsComponentsList}
     </div>
     
   );
 }
 
-function AddProjectButton({ togglePopup }) {
+function AddProjectButton({ notify }) {
+  const { getUser } = useContext(AuthContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [formData, setFormData] = useState({name : "", description: "", status:"IN_PROGRESS"});
+  const isError = formData.name === "";
+  const user = getUser();
+
+  function handleClose() {
+    notify();
+    onClose();
+  }
+
+  async function handleCreateProject(event) {
+    event.preventDefault();
+    await postProject(formData);
+    handleClose();
+  }
+
+  async function postProject(project) {
+    console.log("posting project!");
+    try {
+      await projectApi.addProject(user, project);
+      console.log("finished posting project!");
+    } catch (error) {
+      console.error("Error: ", error);
+    };
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name] : value,
+    }));
+  }
+  
   return (
-    <div onClick={togglePopup} className="add-project-button">
-      <div className="add-project-icon-wrapper">
-        <img className="add-project-icon" src={addProjectIcon}/>
-        <div className="add-project-text">
-          Start New Project
+    <div>
+      <div className="add-project-button-wrapper" onClick={onOpen}>
+        <div className="add-project-button">
+          <div className="add-project-icon-wrapper">
+            <img className="add-project-icon" src={addProjectIcon}/>
+            <div className="add-project-text">
+              Start New Project
+            </div>
+          </div>
         </div>
       </div>
+      <Modal isOpen={isOpen} onClose={handleClose} size="lg">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Add New Project</ModalHeader>
+          <ModalBody>
+            <FormControl isInvalid={isError} mb="3">
+              <FormLabel>Name:</FormLabel>
+              <Input id="name" name="name" value={formData.name} onChange={handleChange}/>
+              {isError && <FormErrorMessage>Name cannot be empty</FormErrorMessage>}
+            </FormControl>
+            <FormLabel>Description:</FormLabel>
+            <Input id="description" name="description" mb="3" onChange={handleChange}/>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={handleClose} mr={4}>Cancel</Button>
+            <Button onClick={handleCreateProject} colorScheme="teal">Create Project</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
+    
   );
 }
 
